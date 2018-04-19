@@ -1,0 +1,124 @@
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Personal Blog a Blogging Category Flat Bootstarp  Responsive Website Template | post :: w3layouts</title>
+	<link href="../../css/bootstrap.css" rel='stylesheet' type='text/css' />
+	<link href="../../css/style.css" rel='stylesheet' type='text/css' />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="Personal Blog Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+	Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" 
+	/>
+	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+	<!----webfonts---->
+		<link href='http://fonts.googleapis.com/css?family=Oswald:100,400,300,700' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,300italic' rel='stylesheet' type='text/css'>
+		<!----//webfonts---->
+		  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<!--end slider -->
+		<!--script-->
+<script type="text/javascript" src="../../js/move-top.js"></script>
+<script type="text/javascript" src="../../js/easing.js"></script>
+<!--/script-->
+<script type="text/javascript">
+			jQuery(document).ready(function($) {
+				$(".scroll").click(function(event){		
+					event.preventDefault();
+					$('html,body').animate({scrollTop:$(this.hash).offset().top},900);
+				});
+			});
+</script>
+<!---->
+
+</head>
+
+<body>
+<!---header---->			
+<div class="header">  
+	 <div class="container">
+		  <div class="logo">
+			  <a href="{{ route('recipes.index') }}"><img src="../../images/logo.jpg" title="" /></a>
+		  </div>
+			 <!---start-top-nav---->
+			 <div class="top-menu">
+				 <div class="search">
+					 <form>
+					 <input type="text" placeholder="" required="">
+					 <input type="submit" value=""/>
+					 </form>
+				 </div>
+				  <span class="menu"> </span> 
+				   <ul>
+						<li class="active"><a href="{{ route('recipes.index') }}">HOME</a></li>						
+						<li><a href="{{ route('recipes.add') }}">ADD RECIPE</a></li>
+						<li><a class="dropdown-item" href="{{ route('logout') }}"
+                            	onclick="event.preventDefault();
+                                         document.getElementById('logout-form').submit();">
+                                        {{ __('LOGOUT') }}
+                            </a>
+
+                       <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>	
+						</li>
+						<div class="clearfix"> </div>
+				 </ul>
+			 </div>
+			 <div class="clearfix"></div>
+					<script>
+					$("span.menu").click(function(){
+					$(".top-menu ul").slideToggle("slow" , function(){
+					});
+					});
+					</script>
+				<!---//End-top-nav---->					
+	 </div>
+	 
+</div>
+<!--/header-->
+@foreach($recipes as $recipe)
+<div class='content'>
+	<div class='container'>
+		<div class='content-grids'>
+			<div class='col-md-8 content-main'>
+				<div class='content-grid'>
+					<div class='content-grid-info'>
+						<div class='post-info'> 
+						
+						 	<h4><a href="{{ route('recipes.info', ['id'=> $recipe->id]) }}">{{$recipe->title}}</a></h4>
+						 	<p> {{$recipe->text}}</p>
+						 	<a href="{{ route('recipes.info', ['id'=> $recipe->id]) }}"><span></span>READ MORE</a>
+						 	<a href="{{ route('recipes.edit', ['id'=> $recipe->id]) }}"><span></span>EDIT</a>
+							<a href="#" onclick="event.preventDefault();
+                                                     document.getElementById('delete-form{{$recipe->id}}').submit();"><span></span>DELETE</a>
+													 <form id="delete-form{{$recipe->id}}" action="{{ route('recipes.delete', ['id'=> $recipe->id]) }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+						
+						</div>
+					</div>
+				</div>
+			@endforeach
+			<div class='clearfix'></div>
+			</div>
+			
+		</div>
+	</div>
+</div>
+
+						
+<!---->
+</body>
+<div class="footer">
+	 <div class="container">
+	 <p>Copyrights © 2015 Blog All rights reserved | Template by <a href="http://w3layouts.com/">W3layouts</a></p>
+	 </div>
+</div>
+
+	
